@@ -38,6 +38,7 @@ PRODUCT_PACKAGES += \
     libnfc_jni \
     p2p_supplicant.conf \
     sensors.default \
+    lights.sony \
 
 # Platform specific tags
 #

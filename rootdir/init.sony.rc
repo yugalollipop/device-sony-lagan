@@ -258,6 +258,24 @@ on post-fs-data
     chown media system /sys/bus/i2c/devices/0-0053/flash_synchronization
     chown media system /sys/bus/i2c/devices/0-0053/flash_current
     chown media system /sys/bus/i2c/devices/0-0053/status
+    # liblights
+    chown root system /sys/devices/i2c-0/0-0036/leds/lm3533-lcd-bl/brightness
+    chown root system /sys/devices/i2c-0/0-0036/leds/lm3533-red/brightness
+    chown root system /sys/devices/i2c-0/0-0036/leds/lm3533-green/brightness
+    chown root system /sys/devices/i2c-0/0-0036/leds/lm3533-blue/brightness
+    chown root system /sys/devices/i2c-0/0-0036/leds/lm3533-red/pattern
+    chown root system /sys/devices/i2c-0/0-0036/leds/lm3533-green/pattern
+    chown root system /sys/devices/i2c-0/0-0036/leds/lm3533-blue/pattern
+    chown root system /sys/devices/i2c-0/0-0036/sync_lvbanks
+    #
+    chmod 0660 /sys/devices/i2c-0/0-0036/leds/lm3533-lcd-bl/brightness
+    chmod 0660 /sys/devices/i2c-0/0-0036/leds/lm3533-red/brightness
+    chmod 0660 /sys/devices/i2c-0/0-0036/leds/lm3533-green/brightness
+    chmod 0660 /sys/devices/i2c-0/0-0036/leds/lm3533-blue/brightness
+    chmod 0660 /sys/devices/i2c-0/0-0036/leds/lm3533-red/pattern
+    chmod 0660 /sys/devices/i2c-0/0-0036/leds/lm3533-green/pattern
+    chmod 0660 /sys/devices/i2c-0/0-0036/leds/lm3533-blue/pattern
+    chmod 0660 /sys/devices/i2c-0/0-0036/sync_lvbanks
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
@@ -379,10 +397,10 @@ service qseecomd /system/bin/qseecomd
     user system
     group system
 
-service illumination /system/bin/illumination_service
-    socket illumination stream 0666 root system
-    class main
-    user root
+#service illumination /system/bin/illumination_service
+#    socket illumination stream 0666 root system
+#    class main
+#    user root
 
 service yginstall /system/bin/sh /yuga_gapps.sh
     class main
