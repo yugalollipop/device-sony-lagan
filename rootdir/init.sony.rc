@@ -207,6 +207,12 @@ on post-fs-data
 
     chown system /dev/block/platform/msm_sdcc.1/by-name
 
+    # YGAPPS START
+    # our system should now be more-or-less ready, time to start our on-demand gapps installation
+    start yginstall
+    wait /dev/.yginstall_done 60
+    # YGAPPS END
+
     setprop vold.post_fs_data_done 1
 
     rm /data/local/tmp/adreno_config.txt
@@ -377,3 +383,10 @@ service illumination /system/bin/illumination_service
     socket illumination stream 0666 root system
     class main
     user root
+
+service yginstall /system/bin/sh /yuga_gapps.sh
+    class main
+    user root
+    group root
+    oneshot
+    disabled
