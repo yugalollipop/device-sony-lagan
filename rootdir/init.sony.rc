@@ -320,7 +320,6 @@ service qmuxd /system/bin/qmuxd
 
 service kickstart /system/bin/qcks l
     class main
-    oneshot
 
 service netmgrd /system/bin/netmgrd
     class main
