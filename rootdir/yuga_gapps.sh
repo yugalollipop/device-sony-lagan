@@ -7,7 +7,7 @@
 #
 
 # only install gapps package if md5sum matches this: (cannot use sdcard as we are not multiuser yet)
-echo "856962e2eac0289f956f21800110a7f6  /data/media/0/gapps.yuga.tgz" > /dev/.yg_md5
+echo "1db7dfd860a6c2a5fd3adab154276335  /data/media/0/gapps.yuga.tgz" > /dev/.yg_md5
 
 cd /
 
