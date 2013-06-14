@@ -319,7 +319,8 @@ service qmuxd /system/bin/qmuxd
     group radio audio bluetooth gps
 
 service kickstart /system/bin/qcks l
-    class main
+    class late_start
+    oneshot
 
 service netmgrd /system/bin/netmgrd
     class main

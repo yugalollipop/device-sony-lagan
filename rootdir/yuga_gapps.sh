@@ -18,7 +18,9 @@ if ! grep -q '^tmpfs /data' /proc/mounts ; then
             mount -o remount,rw /system
             /system/xbin/tar -xvf /data/media/0/gapps.yuga.tgz
             sync
-            reboot
+            echo s > /proc/sysrq-trigger
+            echo u > /proc/sysrq-trigger
+            echo b > /proc/sysrq-trigger
         fi
     fi
 fi
