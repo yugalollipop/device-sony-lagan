@@ -379,6 +379,10 @@ service thermald /system/bin/thermald
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
     class main
+    disabled
+
+service qcfqd /system/bin/qc-fqd
+    class main
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/bugmailer.sh -v
