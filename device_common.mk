@@ -39,6 +39,7 @@ PRODUCT_PACKAGES += \
     p2p_supplicant.conf \
     sensors.default \
     lights.sony \
+    qc-fqd \
 
 # Platform specific tags
 #
