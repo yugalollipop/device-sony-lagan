@@ -21,6 +21,7 @@ DEVICE_PACKAGE_OVERLAYS += device/sony/lagan/overlay
 PRODUCT_PACKAGES += \
     Nfc \
     Tag \
+    Email \
     alsa.msm8960 \
     audio.a2dp.default \
     audio.primary.msm8960 \
