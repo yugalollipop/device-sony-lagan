@@ -382,7 +382,12 @@ service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
     disabled
 
 service qcfqd /system/bin/qc-fqd
-    class main
+    class late_start
+
+# cat setting written by yuga-settings to display driver (reduce brightness)
+service lcd_fsc /system/bin/sh /yuga_cat.sh /data/misc/.pabx_settings_fsc /sys/devices/i2c-0/0-0036/leds/lm3533-lcd-bl/fsc
+    class late_start
+    oneshot
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/bugmailer.sh -v

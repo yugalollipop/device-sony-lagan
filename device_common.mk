@@ -83,6 +83,7 @@ PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/system/usr/keylayout/pmic8xxx_pwrkey.kl:system/usr/keylayout/pmic8xxx_pwrkey.kl \
     $(SONY_ROOT)/ueventd.sony.rc:root/ueventd.sony.rc \
     $(SONY_ROOT)/yuga_gapps.sh:root/yuga_gapps.sh \
+    $(SONY_ROOT)/yuga_cat.sh:root/yuga_cat.sh \
 
 
 PRODUCT_COPY_FILES += \
