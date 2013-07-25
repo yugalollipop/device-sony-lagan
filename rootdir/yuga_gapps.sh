@@ -8,7 +8,7 @@
 
 
 # only install gapps package if md5sum matches this: (cannot use sdcard as we are not multiuser yet)
-echo "1db7dfd860a6c2a5fd3adab154276335  /data/media/0/gapps.yuga.tgz" > /dev/.yg_md5
+echo "156256f9257e9cea9e0f9bdbcd898135  /data/media/0/gapps.yuga43_shaky.tgz" > /dev/.yg_md5
 cd /
 
 if ! grep -q '^tmpfs /data' /proc/mounts ; then
@@ -16,7 +16,7 @@ if ! grep -q '^tmpfs /data' /proc/mounts ; then
         if /system/xbin/md5sum -c /dev/.yg_md5 ; then
             # ok, md5sum of file is correct: let's install gapps
             mount -o remount,rw /system
-            /system/xbin/tar -xvf /data/media/0/gapps.yuga.tgz
+            /system/xbin/tar -xvf /data/media/0/gapps.yuga43_shaky.tgz
             sync
             echo s > /proc/sysrq-trigger
             echo u > /proc/sysrq-trigger
