@@ -41,6 +41,9 @@ PRODUCT_PACKAGES += \
     sensors.default \
     lights.sony \
     qc-fqd \
+    wpa_supplicant_overlay.conf \
+    p2p_supplicant_overlay.conf \
+
 
 # Platform specific tags
 #
@@ -84,6 +87,9 @@ PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/ueventd.sony.rc:root/ueventd.sony.rc \
     $(SONY_ROOT)/yuga_gapps.sh:root/yuga_gapps.sh \
     $(SONY_ROOT)/yuga_cat.sh:root/yuga_cat.sh \
+
+PRODUCT_COPY_FILES += \
+    $(SONY_ROOT)/../mixer_paths.xml:system/etc/mixer_paths.xml \
 
 
 PRODUCT_COPY_FILES += \
