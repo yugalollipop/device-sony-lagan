@@ -33,6 +33,19 @@
         <item>"rndis\\d"</item>
     </string-array>
 
+    <!-- List of regexpressions describing the interface (if any) that represent tetherable
+         bluetooth interfaces.  If the device doesn't want to support tethering over bluetooth this
+         should be empty. -->
+    <string-array translatable="false" name="config_tether_bluetooth_regexs">
+        <item>"bt-pan"</item>
+    </string-array>
+    <!-- Max number of Bluetooth tethering connections allowed. If this is
+         updated config_tether_dhcp_range has to be updated appropriately. -->
+    <integer translateable="false" name="config_max_pan_devices">5</integer>
+    <!-- Dhcp range (min, max) to use for tethering purposes -->
+    <string-array translatable="false" name="config_tether_dhcp_range">
+    </string-array>
+
     <string-array translatable="false" name="networkAttributes">
         <item>"wifi,1,1,1,-1,true"</item>
         <item>"mobile,0,0,0,-1,true"</item>
