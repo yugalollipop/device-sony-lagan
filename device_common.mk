@@ -89,6 +89,10 @@ PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/ueventd.sony.rc:root/ueventd.sony.rc \
     $(SONY_ROOT)/yuga_gapps.sh:root/yuga_gapps.sh \
     $(SONY_ROOT)/yuga_cat.sh:root/yuga_cat.sh \
+    $(SONY_ROOT)/yuga_recovery.sh:root/yuga_recovery.sh \
+    $(SONY_ROOT)/recovery/ramdisk-recovery.cpio:root/recovery/ramdisk-recovery.cpio \
+    $(SONY_ROOT)/sbin/busybox_static:root/sbin/busybox_static \
+
 
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/../mixer_paths.xml:system/etc/mixer_paths.xml \

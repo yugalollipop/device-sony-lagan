@@ -51,6 +51,10 @@ on init
     write /sys/module/subsystem_restart/parameters/max_restarts 8
     write /sys/module/subsystem_restart/parameters/max_history_time 3600
 
+    # start recovery-switch script
+    start ygrecovery
+    wait /dev/.recovery_aborted 9999999
+
 on fs
     mount_all ./fstab.sony
     setprop ro.crypto.fuse_sdcard true
@@ -152,6 +156,7 @@ on boot
 
     write /sys/devices/i2c-3/3-0024/cyttsp_update_fw 1
     write /sys/devices/i2c-3/3-005b/update_fw 1
+
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -392,11 +397,6 @@ service lcd_fsc /system/bin/sh /yuga_cat.sh /data/misc/.pabx_settings_fsc /sys/d
     class late_start
     oneshot
 
-# Start superuser daemon, does nothing if binary does not exist
-service cwm_superuser /system/xbin/su --daemon
-    class late_start
-    oneshot
-
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/bugmailer.sh -v
     class main
@@ -420,6 +420,15 @@ service qseecomd /system/bin/qseecomd
 #    user root
 
 service yginstall /system/bin/sh /yuga_gapps.sh
+    class main
+    user root
+    group root
+    oneshot
+    disabled
+
+# launched by on-init, continues if user does not wnt
+# to enter recovery
+service ygrecovery /sbin/busybox_static sh /yuga_recovery.sh
     class main
     user root
     group root
