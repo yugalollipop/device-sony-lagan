@@ -190,6 +190,10 @@ on post-fs-data
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
+    # Needed to make DASH happy (proximity sensor)
+    chown system system /sys/devices/i2c-2/2-0054/threshold
+    chown system system /sys/devices/i2c-2/2-0054/nburst
+
     #Create the symlink to qcn wpa_supplicant folder for ar6000 wpa_supplicant
     mkdir /data/system 0775 system system
 
