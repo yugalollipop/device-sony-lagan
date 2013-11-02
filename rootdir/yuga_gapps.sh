@@ -15,7 +15,7 @@ echo "$MD5_GAPPS  $PTH_GAPPS" > /dev/.yg_gapps_md5
 cd /
 
 if ! grep -q '^tmpfs /data' /proc/mounts ; then
-    if [ ! -f /system/app/SetupWizard.apk ] ; then
+    if [ ! -f /system/priv-app/SetupWizard.apk ] ; then
         if /system/xbin/md5sum -c /dev/.yg_gapps_md5 ; then
             # ok, md5sum of file is correct: let's install gapps
             mount -o remount,rw /system

@@ -39,11 +39,11 @@
         android:primary="true"
         android:emulated="true"
         android:mtpReserve="350"/>
-    <storage android:mountPoint="/mnt/media_rw/ext_card"
+    <storage android:mountPoint="/storage/sdcard1"
         android:storageDescription="@string/storage_sd_card"
         android:removable="true"
         android:allowMassStorage="true"/>
-    <storage android:mountPoint="/mnt/media_rw/usbdisk"
+    <storage android:mountPoint="/storage/usbdisk"
         android:storageDescription="@string/storage_usb"
         android:removable="true" />
 </StorageList>
