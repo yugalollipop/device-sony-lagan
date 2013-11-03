@@ -6,8 +6,8 @@
 # IF gapps is not already installed on the device
 #
 
-MD5_GAPPS="3a7cfe819de1efb5bf9bdff2ca43d1ad"
-PTH_GAPPS="/data/media/0/gapps_44_yuga_1.tgz"
+MD5_GAPPS="2c8845028f1352477b6233d7ba3d1e52"
+PTH_GAPPS="/data/media/0/gapps_44_yuga_2.tgz"
 
 # only install gapps package if md5sum matches this: (cannot use sdcard as we are not multiuser yet)
 echo "$MD5_GAPPS  $PTH_GAPPS" > /dev/.yg_gapps_md5
