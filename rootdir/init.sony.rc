@@ -30,6 +30,7 @@ on init
     mkdir /mnt/media_rw/usbdisk 0555 root root
     # fuse mountpoint
     mkdir /storage/sdcard1 0555 root root
+    mkdir /storage/usbdisk 0555 root root
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
@@ -392,6 +393,11 @@ service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emul
     class late_start
 
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
+
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
+    class late_start
     disabled
 
 service thermald /system/bin/thermald
