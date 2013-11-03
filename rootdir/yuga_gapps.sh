@@ -21,6 +21,9 @@ if ! grep -q '^tmpfs /data' /proc/mounts ; then
             mount -o remount,rw /system
             /system/xbin/tar -xvf $PTH_GAPPS
             sync
+            # helps calendar provider change
+            rm /data/dalvik-cache/*
+            sync
             echo s > /proc/sysrq-trigger
             echo u > /proc/sysrq-trigger
             echo b > /proc/sysrq-trigger
