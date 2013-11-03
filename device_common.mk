@@ -37,7 +37,7 @@ PRODUCT_PACKAGES += \
     libnfc \
     libnfc_jni \
     p2p_supplicant.conf \
-    sensors.default \
+    sensors.msm8960 \
     lights.sony \
     qc-fqd \
     wpa_supplicant_overlay.conf \
