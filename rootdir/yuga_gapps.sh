@@ -20,6 +20,9 @@ if ! grep -q '^tmpfs /data' /proc/mounts ; then
             # ok, md5sum of file is correct: let's install gapps
             mount -o remount,rw /system
             /system/xbin/tar -xvf $PTH_GAPPS
+            # AOSP calendar conflicts with googles version
+            rm /system/app/Calendar.apk
+            # now sync and reboot the device
             sync
             echo s > /proc/sysrq-trigger
             echo u > /proc/sysrq-trigger
