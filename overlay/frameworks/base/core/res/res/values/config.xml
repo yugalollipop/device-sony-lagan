@@ -150,6 +150,10 @@
         <item>255</item>  <!-- 900+ -->
     </integer-array>
 
+    <!-- Enable lockscreen translucent decor by default -->
+    <bool name="config_enableLockScreenTranslucentDecor">true</bool>
+
+
     <!-- DeskDock uses 90 degrees rotation and no accelerometer -->
     <integer name="config_deskDockRotation">1</integer>
     <bool name="config_deskDockEnablesAccelerometer">false</bool>
