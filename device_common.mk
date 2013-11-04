@@ -47,6 +47,8 @@ PRODUCT_PACKAGES += \
     charger_res_images \
     charger \
 
+PRODUCT_PACKAGES += \
+    Launcher3
 
 # Platform specific tags
 #
