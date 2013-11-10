@@ -413,7 +413,12 @@ service qcfqd /system/bin/qc-fqd
     class late_start
 
 # cat setting written by yuga-settings to display driver (reduce brightness)
-service lcd_fsc /system/bin/sh /yuga_cat.sh /data/misc/.pabx_settings_fsc /sys/devices/i2c-0/0-0036/leds/lm3533-lcd-bl/fsc
+service pabx_lcd_fsc /system/bin/sh /yuga_cat.sh /data/misc/.pabx_settings_fsc /sys/devices/i2c-0/0-0036/leds/lm3533-lcd-bl/fsc
+    class late_start
+    oneshot
+
+# cat setting written by yuga-settings to vibra driver
+service pabx_vib_level /system/bin/sh /yuga_cat.sh /data/misc/.pabx_settings_vibra /sys/devices/virtual/timed_output/vibrator/vib_level
     class late_start
     oneshot
 
