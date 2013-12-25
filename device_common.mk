@@ -39,6 +39,7 @@ PRODUCT_PACKAGES += \
     p2p_supplicant.conf \
     sensors.msm8960 \
     lights.sony \
+    liblights-core \
     qc-fqd \
     wpa_supplicant_overlay.conf \
     p2p_supplicant_overlay.conf \
