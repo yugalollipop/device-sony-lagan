@@ -31,6 +31,11 @@ if ! grep -q '^tmpfs /data' /proc/mounts ; then
     fi
 fi
 
+# wifi hack for 4.3 kernel: load cfg80211 if it exists
+if [ -f /system/lib/modules/cfg80211.ko ] ; then
+	/system/bin/insmod /system/lib/modules/cfg80211.ko
+fi
+
 # tell init to continue
 touch /dev/.yginstall_done
 
