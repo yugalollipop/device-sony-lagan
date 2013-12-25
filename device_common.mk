@@ -41,6 +41,9 @@ PRODUCT_PACKAGES += \
     lights.sony \
     liblights-core \
     qc-fqd \
+    thermanager \
+    qrngd \
+    libxml2 \
     wpa_supplicant_overlay.conf \
     p2p_supplicant_overlay.conf \
 
