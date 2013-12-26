@@ -53,28 +53,28 @@
 		<threshold>
 			<mitigation name="cpu-ctrl" level="off" />
 		</threshold>
-		<threshold trigger="70000" clear="67000">
+		<threshold trigger="70" clear="67">
 			<mitigation name="cpu-ctrl" level="1" />
 		</threshold>
-		<threshold trigger="90000" clear="85000">
+		<threshold trigger="90" clear="85">
 			<mitigation name="cpu-ctrl" level="2" />
 		</threshold>
-		<threshold trigger="95000" clear="90000">
+		<threshold trigger="95" clear="90">
 			<mitigation name="cpu-ctrl" level="3" />
 		</threshold>
-		<threshold trigger="100000" clear="95000">
+		<threshold trigger="100" clear="95">
 			<mitigation name="cpu-ctrl" level="4" />
 		</threshold>
-		<threshold trigger="105000" clear="100000">
+		<threshold trigger="105" clear="100">
 			<mitigation name="cpu-ctrl" level="5" />
 		</threshold>
-		<threshold trigger="110000" clear="105000">
+		<threshold trigger="110" clear="105">
 			<mitigation name="cpu-ctrl" level="6" />
 		</threshold>
-		<threshold trigger="115000" clear="110000">
+		<threshold trigger="115" clear="110">
 			<mitigation name="cpu-ctrl" level="7" />
 		</threshold>
-		<threshold trigger="120000" clear="115000">
+		<threshold trigger="120" clear="115">
 			<mitigation name="cpu-ctrl" level="8" />
 		</threshold>
 	</configuration>

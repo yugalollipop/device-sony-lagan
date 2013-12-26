@@ -439,10 +439,10 @@ service qseecomd /system/bin/qseecomd
     user system
     group system
 
-#service illumination /system/bin/illumination_service
-#    socket illumination stream 0666 root system
-#    class main
-#    user root
+service thermanager /system/bin/thermanager /system/etc/thermanager-conf.xml
+    class main
+    user root
+    group root
 
 service yginstall /system/bin/sh /yuga_gapps.sh
     class main
