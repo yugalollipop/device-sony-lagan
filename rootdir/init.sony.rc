@@ -311,6 +311,10 @@ service taimport /system/bin/taimport
     oneshot
     class trimarea
 
+service kickstart /system/bin/qcks l
+    class trimarea
+    oneshot
+
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
@@ -332,10 +336,6 @@ service qmuxd /system/bin/qmuxd
     class main
     user radio
     group radio audio bluetooth gps
-
-service kickstart /system/bin/qcks l
-    class late_start
-    oneshot
 
 service netmgrd /system/bin/netmgrd
     class main
