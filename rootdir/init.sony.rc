@@ -309,7 +309,7 @@ service taimport /system/bin/taimport
     class main
     user root
     oneshot
-    class trimarea
+    class late_start
 
 service kickstart /system/bin/qcks l
     class trimarea
