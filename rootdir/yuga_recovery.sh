@@ -2,7 +2,7 @@
 
 export PATH="/sbin"
 
-EVENT_FILE="/dev/input/event9"
+EVENT_FILE="/dev/input/event8"
 EVENT_OUT="/dev/.yuga_recovery_do"
 INIT_GOON="/dev/.recovery_aborted"
 
