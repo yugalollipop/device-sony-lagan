@@ -422,6 +422,11 @@ service pabx_vib_level /system/bin/sh /yuga_cat.sh /data/misc/.pabx_settings_vib
     class late_start
     oneshot
 
+# cat setting written by yuga-settings to double-tap-to-wake device file
+service pabx_dbl_tap /system/bin/sh /yuga_cat.sh /data/misc/.pabx_settings_double_tap /sys/devices/virtual/input/input1/wakeup_gesture
+    class late_start
+    oneshot
+
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/bugmailer.sh -v
     class main
