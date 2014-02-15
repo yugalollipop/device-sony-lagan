@@ -402,9 +402,12 @@ service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
     class main
     disabled
 
+# frequency daemon - will be started by yuga_reconf
 service qcfqd /system/bin/qc-fqd
     class late_start
+    disabled
 
+# reconfigure kernel-settings on-the-fly
 service yuga_reconf /system/bin/sh yuga_reconf.sh
     class late_start
     oneshot
