@@ -249,18 +249,11 @@ on post-fs-data
     write /sys/module/pm_8x60/modes/cpu2/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu3/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "ondemand"
-    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
-    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
-    write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
-    write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 384000
+
+    # boot up with all 4 CPUs in performance mode
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
 
     mkdir /data/camera 0771 root camera
 
@@ -412,18 +405,7 @@ service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
 service qcfqd /system/bin/qc-fqd
     class late_start
 
-# cat setting written by yuga-settings to display driver (reduce brightness)
-service pabx_lcd_fsc /system/bin/sh /yuga_cat.sh /data/misc/.pabx_settings_fsc /sys/devices/i2c-0/0-0036/leds/lm3533-lcd-bl/fsc
-    class late_start
-    oneshot
-
-# cat setting written by yuga-settings to vibra driver
-service pabx_vib_level /system/bin/sh /yuga_cat.sh /data/misc/.pabx_settings_vibra /sys/devices/virtual/timed_output/vibrator/vib_level
-    class late_start
-    oneshot
-
-# cat setting written by yuga-settings to double-tap-to-wake device file
-service pabx_dbl_tap /system/bin/sh /yuga_cat.sh /data/misc/.pabx_settings_double_tap /sys/devices/virtual/input/input1/wakeup_gesture
+service yuga_reconf /system/bin/sh yuga_reconf.sh
     class late_start
     oneshot
 
