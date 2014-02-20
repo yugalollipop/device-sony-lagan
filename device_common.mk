@@ -41,6 +41,7 @@ PRODUCT_PACKAGES += \
     lights.sony \
     liblights-core \
     qc-fqd \
+    libqc-opt \
     thermanager \
     qrngd \
     libxml2 \
