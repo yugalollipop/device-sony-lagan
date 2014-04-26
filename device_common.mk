@@ -37,7 +37,6 @@ PRODUCT_PACKAGES += \
     libnfc \
     libnfc_jni \
     p2p_supplicant.conf \
-    sensors.msm8960 \
     lights.sony \
     liblights-core \
     qc-fqd \

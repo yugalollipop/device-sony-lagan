@@ -83,3 +83,7 @@
 # LM3533 ALS
 /sys/devices/i2c-0/0-0036 als_enable 0600 system system
 /sys/devices/i2c-0/0-0036 als_result 0400 system system
+
+# sensors
+/dev/iio:device*          0660   system     input
+
