@@ -38,7 +38,6 @@ PRODUCT_PACKAGES += \
     libnfc_jni \
     p2p_supplicant.conf \
     lights.sony \
-    liblights-core \
     qc-fqd \
     libqc-opt \
     thermanager \
