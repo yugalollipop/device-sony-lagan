@@ -2,7 +2,8 @@
 
 export PATH="/sbin"
 
-EVENT_FILE="/dev/input/event8"
+EVENT_NAME=`( cd /sys/class/input ; busybox_static grep  gpio-keys event*/device/name | busybox_static awk -F/ '{print $1}')`
+EVENT_FILE="/dev/input/$EVENT_NAME"
 EVENT_OUT="/dev/.yuga_recovery_do"
 INIT_GOON="/dev/.recovery_aborted"
 
@@ -24,8 +25,9 @@ busybox_static cat $EVENT_FILE > $EVENT_OUT &
 fancyass
 busybox_static pkill -f "busybox_static cat $EVENT_FILE"
 
-if [ -s $EVENT_OUT ] ; then
-	echo 150 > /sys/class/leds/lm3533-blue/brightness
+if [ -s $EVENT_OUT ] || busybox_static grep -q warmboot=0x77665502 /proc/cmdline ; then
+	echo 10 > /sys/class/leds/lm3533-blue/brightness
+	echo 40 > /sys/class/leds/lm3533-green/brightness
 	
 	cd /
 	busybox_static mount -o remount,rw /
