@@ -323,6 +323,9 @@ on post-fs-data
     # start kickstart and co..
     class_start trimarea
 
+    # start taimport to readout the mac addr
+    exec /system/bin/taimport
+
     ## signal system that post_fs_data was done
     setprop vold.post_fs_data_done 1
 
@@ -344,11 +347,6 @@ service qmuxd /system/bin/qmuxd
     class main
     user radio
     group radio audio bluetooth gps
-
-service taimport /system/bin/taimport
-    user root
-    oneshot
-    class trimarea
 
 # Last 2 args: start block(blk size 128k), number of blocks(partitionsize(kb)/128(kb))
 service tad_static /system/bin/tad_static /dev/block/mmcblk0 1,16
