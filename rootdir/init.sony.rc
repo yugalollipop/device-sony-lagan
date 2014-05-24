@@ -324,7 +324,10 @@ on post-fs-data
     class_start trimarea
 
     # start taimport to readout the mac addr
-    exec /system/bin/taimport
+    wait /dev/socket/tad 5
+    # hack: sleep 1 second to let tad_static finish startup
+    wait /dev/does_not_exist 1
+    start taimport
 
     ## signal system that post_fs_data was done
     setprop vold.post_fs_data_done 1
@@ -363,6 +366,12 @@ service rmt_storage /system/bin/rmt_storage
     class core
     user root
     disabled
+
+service taimport /system/bin/taimport
+    user root
+    oneshot
+    disabled
+
 
 on property:ro.boot.emmc=true
     start rmt_storage
