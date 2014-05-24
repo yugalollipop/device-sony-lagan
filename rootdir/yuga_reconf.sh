@@ -38,7 +38,7 @@ case "$cfg_gov" in
     echo 70 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core
     echo 3 > /sys/devices/system/cpu/cpufreq/ondemand/down_differential_multi_core
     echo 918000 > /sys/devices/system/cpu/cpufreq/ondemand/optimal_freq
-    echo 1026000 > /sys/devices/system/cpu/cpufreq/ondemand/sync_freq
+    echo 384000 > /sys/devices/system/cpu/cpufreq/ondemand/sync_freq
     echo 80 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load
         ;;
     esac
