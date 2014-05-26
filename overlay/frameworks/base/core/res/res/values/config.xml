@@ -161,12 +161,13 @@
     <!-- SD Card can be removed without removing battery -->
     <bool name="config_batterySdCardAccessibility">true</bool>
 
+    <!--
+       Sets the package names whose certificates should be used to
+       verify location providers are allowed to be loaded.
+    -->
     <string-array name="config_locationProviderPackageNames" translatable="false">
-        <!-- The standard AOSP fused location provider -->
-        <item>com.android.location.fused</item>
-        <!-- The Google Network Location Services location provider -->
-        <item>com.google.android.location</item>
         <item>com.google.android.gms</item>
+        <item>com.android.location.fused</item>
     </string-array>
 
 </resources>
