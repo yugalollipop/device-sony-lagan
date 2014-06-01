@@ -39,6 +39,7 @@ PRODUCT_PACKAGES += \
     p2p_supplicant.conf \
     lights.sony \
     qc-fqd \
+    waldi \
     libqc-opt \
     thermanager \
     qrngd \

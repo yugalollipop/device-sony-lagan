@@ -458,6 +458,10 @@ service thermald /system/bin/thermald
     user root
     group root
 
+# GMS Service monitor
+service waldi /system/bin/waldi
+    class late_start
+
 # frequency daemon - will be started by yuga_reconf
 service qcfqd /system/bin/qc-fqd
     class late_start
