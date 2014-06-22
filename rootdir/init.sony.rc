@@ -506,6 +506,7 @@ service ygrecovery /sbin/busybox_static sh /yuga_recovery.sh
     user root
     group root
     oneshot
+    seclabel u:r:recovery:s0
     disabled
 
 
