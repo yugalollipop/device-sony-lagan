@@ -358,6 +358,8 @@ service tad_static /system/bin/tad_static /dev/block/mmcblk0 1,16
 
 service kickstart /system/bin/qcks l
     class trimarea
+    user root
+    group radio
     oneshot
 
 service rmt_storage /system/bin/rmt_storage

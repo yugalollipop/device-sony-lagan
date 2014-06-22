@@ -1,0 +1,11 @@
+# Qualcomm Management Interface Multiplexer
+type tad_static, domain;
+type tad_static_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(tad_static)
+
+
+# needs RW access to mmcblk0
+allow tad_static block_device:dir { search };
+allow tad_static root_block_device:blk_file rw_file_perms;

@@ -90,6 +90,9 @@ BOARD_SEPOLICY_UNION += \
        pabx_config.te \
        yuga_service.te \
        recovery.te \
-       qcfqd.te
+       qcfqd.te \
+       tad_static.te \
+       taimport.te \
+       ta_qmi_client.te
 
 BOARD_CHARGER_ENABLE_SUSPEND := true
