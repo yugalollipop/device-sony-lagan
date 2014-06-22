@@ -53,6 +53,7 @@
 /dev/v4l-subdev.*                      u:object_r:camera_device:s0
 /dev/video([0-9])+                     u:object_r:camera_device:s0
 /dev/msm_camera(/.*)?                  u:object_r:camera_device:s0
+/dev/msm_vpe_standalone                u:object_r:camera_device:s0
 /dev/media([0-9])+                     u:object_r:camera_device:s0
 
 # Qualcomm MSM Audio devices
