@@ -87,7 +87,7 @@ BOARD_SEPOLICY_UNION += \
        ueventd.te
 
 BOARD_SEPOLICY_UNION += \
-       pabx.te \
+       pabx_config.te \
        yuga_service.te
 
 BOARD_CHARGER_ENABLE_SUSPEND := true
