@@ -56,28 +56,35 @@ TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-BOARD_SEPOLICY_DIRS := \
+BOARD_SEPOLICY_DIRS += \
        device/sony/lagan/sepolicy
 
-BOARD_SEPOLICY_UNION := \
-       app.te \
-       bluetooth.te \
+BOARD_SEPOLICY_UNION += \
+       bluetooth_loader.te \
+       bridge.te \
+       camera.te \
+       conn_init.te \
        device.te \
        domain.te \
-       drmserver.te \
        file.te \
        file_contexts \
-       hci_init.te \
-       init_shell.te \
-       keystore.te \
-       mediaserver.te \
+       hostapd.te \
        kickstart.te \
-       nfc.te \
+       mediaserver.te \
+       mpdecision.te \
+       netmgrd.te \
+       property.te \
+       property_contexts \
+       qmux.te \
        rild.te \
+       rmt.te \
+       sensors.te \
        surfaceflinger.te \
-       system.te \
-       ueventd.te \
-       wpa.te
+       system_server.te \
+       tee.te \
+       te_macros \
+       thermald.te \
+       ueventd.te
 
 
 BOARD_CHARGER_ENABLE_SUSPEND := true
