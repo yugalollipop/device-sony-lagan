@@ -106,6 +106,7 @@
 /system/bin/mm-qcamera-daemon      u:object_r:camera_exec:s0
 /system/bin/qseecomd               u:object_r:tee_exec:s0
 /system/bin/conn_init              u:object_r:conn_init_exec:s0
+/system/bin/qc-fqd                 u:object_r:qcfqd_exec:s0
 
 # Persist firmware filesystem
 /persist(/.*)?                   u:object_r:persist_file:s0
