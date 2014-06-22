@@ -1,8 +1,8 @@
 #!/bin/sh
 
-cat /data/misc/.pabx_settings_fsc        > /sys/devices/i2c-0/0-0036/leds/lm3533-lcd-bl/fsc
-cat /data/misc/.pabx_settings_vibra      > /sys/devices/virtual/timed_output/vibrator/vib_level
-cat /data/misc/.pabx_settings_double_tap > /sys/devices/virtual/input/input1/wakeup_gesture
+cat /data/.pabx/pabx_settings_fsc        > /sys/devices/i2c-0/0-0036/leds/lm3533-lcd-bl/fsc
+cat /data/.pabx/pabx_settings_vibra      > /sys/devices/virtual/timed_output/vibrator/vib_level
+cat /data/.pabx/pabx_settings_double_tap > /sys/devices/virtual/input/input1/wakeup_gesture
 
 
 # stop qcfqd from shutting down CPUs
@@ -15,7 +15,7 @@ echo 1 > /sys/devices/system/cpu/cpu2/online
 echo 1 > /sys/devices/system/cpu/cpu3/online
 
 
-cfg_gov=`cat /data/misc/.pabx_settings_governor`
+cfg_gov=`cat /data/.pabx/pabx_settings_governor`
 case "$cfg_gov" in
     "interactive")
     echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
