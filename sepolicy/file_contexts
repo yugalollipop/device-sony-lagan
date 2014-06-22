@@ -125,3 +125,6 @@
 
 # qmuxd junk
 /sys/devices/virtual/hsicctl/hsicctl([0-9])+/modem_wait      u:object_r:sysfs_qmux:s0
+
+# yuga settings
+/data/.pabx(/.*)?           u:object_r:pabx_config:s0

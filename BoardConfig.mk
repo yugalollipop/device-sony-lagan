@@ -86,5 +86,7 @@ BOARD_SEPOLICY_UNION += \
        thermald.te \
        ueventd.te
 
+BOARD_SEPOLICY_UNION += \
+       pabx.te
 
 BOARD_CHARGER_ENABLE_SUSPEND := true

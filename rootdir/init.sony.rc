@@ -255,6 +255,8 @@ on post-fs-data
     mkdir /data/audio 0770 media audio
     chmod 2770 /data/audio
 
+    mkdir /data/.pabx 0770 system system
+
     # LED On/Off synchronization
     chown system system /sys/class/leds/red/device/lock
 
