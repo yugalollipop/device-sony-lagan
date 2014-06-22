@@ -121,3 +121,6 @@
 # Sysfs files used by mpdecision
 /sys/module/pm2/modes(/.*)?            u:object_r:sysfs_mpdecision:s0
 /sys/module/pm_8x60/modes(/.*)?        u:object_r:sysfs_mpdecision:s0
+
+# qmuxd junk
+/sys/devices/virtual/hsicctl/hsicctl([0-9])+/modem_wait      u:object_r:sysfs_qmux:s0

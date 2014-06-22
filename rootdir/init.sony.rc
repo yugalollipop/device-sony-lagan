@@ -79,6 +79,7 @@ on boot
     write /sys/class/android_usb/android0/iManufacturer ${ro.product.manufacturer}
     write /sys/class/android_usb/android0/f_rndis/manufacturer ${ro.product.manufacturer}
     write /sys/class/android_usb/android0/iProduct ${ro.product.model}
+    write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
 
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
@@ -307,7 +308,6 @@ on post-fs-data
     symlink /mnt/qcks /data/qcks
 
     # Allow QMUX daemon to assign port open wait time
-    write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
 
     # YGAPPS START
