@@ -222,11 +222,7 @@ on post-fs-data
     mkdir /data/nfc 770 nfc nfc
     mkdir /data/nfc/param 770 nfc nfc
 
-    # Create the directories used by the Wireless subsystem
-    mkdir /data/misc/wifi 0770 wifi wifi
-    mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    # to observe dnsmasq.leases file for dhcp information of soft ap.
     chown dhcp system /data/misc/dhcp
 
     # Set wlan serial number
@@ -365,6 +361,7 @@ service kickstart /system/bin/qcks l
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+    group system
     disabled
 
 service taimport /system/bin/taimport
@@ -381,6 +378,7 @@ service hciattach /system/bin/sh /system/etc/init.sony.bt.sh
     class late_start
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
+    seclabel u:r:bluetooth_loader:s0
     disabled
     oneshot
 
@@ -392,6 +390,7 @@ on property:bluetooth.hciattach=false
 
 service netmgrd /system/bin/netmgrd
     class main
+    group radio
 
 service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -456,7 +455,7 @@ service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk
 service thermald /system/bin/thermald
     class main
     user root
-    group root
+    group radio system
 
 # GMS Service monitor
 service waldi /system/bin/waldi

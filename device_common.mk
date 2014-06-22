@@ -44,6 +44,10 @@ PRODUCT_PACKAGES += \
     thermanager \
     qrngd \
     libxml2 \
+    libwpa_client \
+    hostapd \
+    wpa_supplicant \
+    wpa_supplicant.conf \
     wpa_supplicant_overlay.conf \
     p2p_supplicant_overlay.conf \
 
