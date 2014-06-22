@@ -24,10 +24,6 @@ allow yuga_service self:capability { dac_override dac_read_search };
 allow yuga_service pabx_config:dir r_dir_perms;
 allow yuga_service pabx_config:file r_file_perms;
 
-# allow writing to /dev
-allow yuga_service device:dir rw_dir_perms;
-allow yuga_service device:file create_file_perms;
-
 # allow us to write to sysfs nodes
 allow yuga_service sysfs_devices_system_cpu:file rw_file_perms;
 allow yuga_service sysfs:file rw_file_perms;

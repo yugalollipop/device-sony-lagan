@@ -2,6 +2,12 @@
 # on yuga, we are never going to build a recovery partition and 
 # therefore need this in the normal boot image
 
+## pabx: needed to write to /dev
+allow recovery device:dir rw_dir_perms;
+allow recovery device:file create_file_perms;
+
+## google version follows
+
   allow recovery rootfs:file { entrypoint execute };
   permissive_or_unconfined(recovery)
 
