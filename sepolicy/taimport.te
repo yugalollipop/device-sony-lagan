@@ -5,3 +5,5 @@ type taimport_exec, exec_type, file_type;
 # Started by init
 init_daemon_domain(taimport)
 
+# DAC overrides
+allow taimport self:capability dac_override;

@@ -40,8 +40,6 @@ on init
     # fuse mountpoint
     mkdir /storage/sdcard1 0555 root root
     mkdir /storage/usbdisk 0555 root root
-    # tmpfs target for kickstart (must be done here, as / will get remounted RO)
-    mkdir /mnt/qcks 0700 root system
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
@@ -305,9 +303,8 @@ on post-fs-data
     chmod 0660 /sys/devices/i2c-0/0-0036/leds/lm3533-blue/pattern
     chmod 0660 /sys/devices/i2c-0/0-0036/sync_lvbanks
 
-    # Mount tmpfs for kickstart
-    mount tmpfs tmpfs /mnt/qcks mode=0770,uid=1000,gid=1000
-    symlink /mnt/qcks /data/qcks
+    # kickstart firmware files
+    mkdir /data/qcks 0700 root system
 
     # Allow QMUX daemon to assign port open wait time
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait

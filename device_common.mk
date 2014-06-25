@@ -45,6 +45,7 @@ PRODUCT_PACKAGES += \
     qrngd \
     libxml2 \
     libwpa_client \
+    libnetd_client \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf \

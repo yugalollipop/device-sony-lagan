@@ -1,2 +1,4 @@
 # Grant access to Qualcomm MSM Interface (QMI) radio sockets to RILD
+## fixme -- needed?
 qmux_socket(rild)
+
