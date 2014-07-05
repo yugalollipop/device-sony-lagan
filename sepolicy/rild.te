@@ -1,4 +1,8 @@
 # Grant access to Qualcomm MSM Interface (QMI) radio sockets to RILD
-## fixme -- needed?
+
 qmux_socket(rild)
 
+# allow rild <-> mediaserver communication
+binder_use(rild);
+binder_call(rild, mediaserver);
+binder_call(mediaserver, rild);
