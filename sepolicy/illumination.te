@@ -1,0 +1,22 @@
+# Qualcomm Management Interface Multiplexer
+type illumination, domain;
+type illumination_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(illumination)
+
+# DAC overrides
+allow illumination self:capability dac_override;
+
+# allow wakelock access
+wakelock_use(illumination)
+
+# must be ableto write sysfs files (brightness, rate_ms...)
+allow illumination sysfs:file write;
+
+# send uinput events
+allow illumination { uhid_device }:chr_file rw_file_perms;
+
+# system_server does dlload(lights-core) and needs access to this socket
+allow system_server illumination:unix_stream_socket connectto;
+allow system_server illumination_socket:sock_file rw_file_perms;
