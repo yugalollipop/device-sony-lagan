@@ -255,6 +255,9 @@ on post-fs-data
 
     mkdir /data/.pabx 0770 system system
 
+    # used by taimport
+    mkdir /data/etc   0755 root root
+
     # LED On/Off synchronization
     chown system system /sys/class/leds/red/device/lock
 

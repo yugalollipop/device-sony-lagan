@@ -142,3 +142,6 @@
 
 # yuga settings
 /data/.pabx(/.*)?           u:object_r:pabx_config:s0
+
+# taimport tempfiles
+/data/etc(/.*)?             u:object_r:taimport_data_file:s0
