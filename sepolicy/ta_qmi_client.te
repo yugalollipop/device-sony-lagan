@@ -19,3 +19,10 @@ allow ta_qmi_client self:socket create_socket_perms;
 
 # ..and to talk to qmuxd
 qmux_socket(ta_qmi_client)
+
+# allow comminucation with /dev/socket/tad
+allow ta_qmi_client tad_socket:sock_file { write };
+allow ta_qmi_client tad_static:unix_stream_socket { connectto read write setopt };
+
+# allow wakelocks
+wakelock_use(ta_qmi_client);

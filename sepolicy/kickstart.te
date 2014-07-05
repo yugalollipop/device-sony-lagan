@@ -8,7 +8,7 @@ init_daemon_domain(kickstart)
 allow kickstart self:capability dac_override;
 
 # /dev/socket/tad (fixme: class?)
-allow kickstart socket_device:sock_file { write };
+allow kickstart tad_socket:sock_file { write };
 
 # allow socket communication with tad_static
 allow kickstart tad_static:unix_stream_socket { connectto read write setopt };
