@@ -403,10 +403,6 @@ service thermald /system/bin/thermald
     user root
     group root
 
-# GMS Service monitor
-service waldi /system/bin/waldi
-    class late_start
-
 # frequency daemon - will be started by yuga_reconf
 service qcfqd /system/bin/qc-fqd
     class late_start
@@ -450,8 +446,3 @@ service ygrecovery /sbin/busybox_static sh /yuga_recovery.sh
     oneshot
     disabled
 
-
-service illumination /system/bin/illumination_service
-    socket illumination stream 0666 root system
-    class core
-    user root
