@@ -401,10 +401,6 @@ service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk
     class late_start
     disabled
 
-# GMS Service monitor
-service waldi /system/bin/waldi
-    class late_start
-
 # frequency daemon - will be started by yuga_reconf
 service qcfqd /system/bin/qc-fqd
     class late_start
@@ -453,8 +449,3 @@ service ygrecovery /sbin/busybox_static sh /yuga_recovery.sh
     seclabel u:r:recovery:s0
     disabled
 
-
-service illumination /system/bin/illumination_service
-    socket illumination stream 0666 root system
-    class core
-    user root
