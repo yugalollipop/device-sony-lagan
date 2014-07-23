@@ -38,8 +38,9 @@ PRODUCT_PACKAGES += \
     libnfc_jni \
     p2p_supplicant.conf \
     lights.sony \
+    sensors.msm8960 \
+    liblights-core \
     qc-fqd \
-    waldi \
     libqc-opt \
     thermanager \
     qrngd \
