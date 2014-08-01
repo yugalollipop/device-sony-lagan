@@ -31,6 +31,10 @@ if ! grep -q '^tmpfs /data' /proc/mounts ; then
     fi
 fi
 
+# load radio-iris during boot (can not be compiled in-kernel due to sloppy coding)
+/system/bin/insmod /system/lib/modules/radio-iris-transport.ko
+
+
 # tell init to continue
 touch /dev/.yginstall_done
 
