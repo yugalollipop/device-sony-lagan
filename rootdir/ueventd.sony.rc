@@ -87,3 +87,6 @@
 # sensors
 /dev/iio:device*          0660   system     input
 
+# radio - the driver is crap, but turning the radio an requires bt, so we can
+# at least restrict this somewhat
+/dev/radio0               0660   root       net_bt_admin
