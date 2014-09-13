@@ -39,6 +39,7 @@ PRODUCT_PACKAGES += \
     p2p_supplicant.conf \
     lights.sony \
     sensors.msm8960 \
+    nfc.msm8960 \
     liblights-core \
     qc-fqd \
     libqc-opt \
