@@ -49,6 +49,15 @@ PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
     p2p_supplicant_overlay.conf \
 
+#GFX
+PRODUCT_PACKAGES += \
+    gralloc.msm8960 \
+    hwcomposer.msm8960 \
+    memtrack.msm8960 \
+    libgenlock \
+    libqdutils \
+    libqdMetaData
+
 PRODUCT_PACKAGES += \
     charger_res_images \
     charger \

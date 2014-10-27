@@ -1,3 +1,4 @@
+PRODUCT_VENDOR_KERNEL_HEADERS := device/sony/lagan/kernel-headers
 
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
@@ -31,6 +32,9 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 
 TARGET_SYSTEM_PROP := device/sony/lagan/system.prop
+
+TARGET_USES_ION := true
+USE_DEVICE_SPECIFIC_CAMERA := true
 
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HOSTAPD_DRIVER := NL80211
