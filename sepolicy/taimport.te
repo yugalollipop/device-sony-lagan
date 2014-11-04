@@ -1,0 +1,22 @@
+# Qualcomm Management Interface Multiplexer
+type taimport, domain;
+type taimport_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(taimport)
+
+# DAC overrides
+allow taimport self:capability dac_override;
+
+# write to /data/etc
+allow taimport taimport_data_file:file create_file_perms;
+allow taimport taimport_data_file:dir rw_dir_perms;
+
+# system_server will load the kernel module and wlan.ko
+# therefore will inherit the privileges of it during the file read
+allow system_server taimport_data_file:file r_file_perms;
+allow system_server taimport_data_file:dir { search };
+
+# allow comminucation with /dev/socket/tad
+allow taimport tad_socket:sock_file { write };
+allow taimport tad_static:unix_stream_socket { connectto read write setopt };

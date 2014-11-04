@@ -40,8 +40,6 @@ on init
     # fuse mountpoint
     mkdir /storage/sdcard1 0555 root root
     mkdir /storage/usbdisk 0555 root root
-    # tmpfs target for kickstart (must be done here, as / will get remounted RO)
-    mkdir /mnt/qcks 0700 root system
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
@@ -79,6 +77,7 @@ on boot
     write /sys/class/android_usb/android0/iManufacturer ${ro.product.manufacturer}
     write /sys/class/android_usb/android0/f_rndis/manufacturer ${ro.product.manufacturer}
     write /sys/class/android_usb/android0/iProduct ${ro.product.model}
+    write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
 
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
@@ -167,11 +166,7 @@ on post-fs-data
     mkdir /data/nfc 770 nfc nfc
     mkdir /data/nfc/param 770 nfc nfc
 
-    # Create the directories used by the Wireless subsystem
-    mkdir /data/misc/wifi 0770 wifi wifi
-    mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    # to observe dnsmasq.leases file for dhcp information of soft ap.
     chown dhcp system /data/misc/dhcp
 
     # Set wlan serial number
@@ -202,6 +197,11 @@ on post-fs-data
     # Enable the setgid bit on the directory
     mkdir /data/audio 0770 media audio
     chmod 2770 /data/audio
+
+    mkdir /data/.pabx 0770 system system
+
+    # used by taimport
+    mkdir /data/etc   0755 root root
 
     # LED On/Off synchronization
     chown system system /sys/class/leds/red/device/lock
@@ -251,12 +251,10 @@ on post-fs-data
     chmod 0660 /sys/devices/i2c-0/0-0036/leds/lm3533-blue/pattern
     chmod 0660 /sys/devices/i2c-0/0-0036/sync_lvbanks
 
-    # Mount tmpfs for kickstart
-    mount tmpfs tmpfs /mnt/qcks mode=0770,uid=1000,gid=1000
-    symlink /mnt/qcks /data/qcks
+    # kickstart firmware files
+    mkdir /data/qcks 0700 root system
 
     # Allow QMUX daemon to assign port open wait time
-    write /sys/module/rmnet_usb/parameters/rmnet_data_init 1
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
 
     # YGAPPS START
@@ -305,11 +303,14 @@ service tad_static /system/bin/tad_static /dev/block/mmcblk0 1,16
 
 service kickstart /system/bin/qcks l
     class trimarea
+    user root
+    group radio
     oneshot
 
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+    group system
     disabled
 
 service taimport /system/bin/taimport
@@ -326,6 +327,7 @@ service hciattach /system/bin/sh /system/etc/init.sony.bt.sh
     class late_start
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
+    seclabel u:r:bluetooth_loader:s0
     disabled
     oneshot
 
@@ -337,6 +339,7 @@ on property:bluetooth.hciattach=false
 
 service netmgrd /system/bin/netmgrd
     class main
+    group radio
 
 service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -411,6 +414,7 @@ service qcfqd /system/bin/qc-fqd
 # reconfigure kernel-settings on-the-fly
 service yuga_reconf /system/bin/sh yuga_reconf.sh
     class late_start
+    seclabel u:r:yuga_service:s0
     oneshot
 
 # bugreport is triggered by holding down volume down, volume up and power
@@ -424,6 +428,8 @@ service qrngd /system/bin/qrngd -f
     class core
     user root
     group root
+    # does not work well with android-l linux rules
+    disabled
 
 service thermanager /system/bin/thermanager /system/etc/thermanager-conf.xml
     class main
@@ -435,6 +441,7 @@ service yginstall /system/bin/sh /yuga_gapps.sh
     user root
     group root
     oneshot
+    seclabel u:r:recovery:s0
     disabled
 
 # launched by on-init, continues if user does not wnt
@@ -444,5 +451,6 @@ service ygrecovery /sbin/busybox_static sh /yuga_recovery.sh
     user root
     group root
     oneshot
+    seclabel u:r:recovery:s0
     disabled
 
