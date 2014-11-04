@@ -1,0 +1,238 @@
+diff --git a/BoardConfig.mk b/BoardConfig.mk
+index 0575b30..6d8072b 100644
+--- a/BoardConfig.mk
++++ b/BoardConfig.mk
+@@ -68,16 +68,24 @@ TARGET_USES_OVERLAY := true
+ TARGET_USES_SF_BYPASS := true
+ TARGET_USES_C2D_COMPOSITON := true
+ 
+-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+-TARGET_RECOVERY_UI_LIB := librecovery_ui_mako
++# Enable dex-preoptimization to speed up first boot sequence
++ifeq ($(HOST_OS),linux)
++  ifeq ($(TARGET_BUILD_VARIANT),user)
++    ifeq ($(WITH_DEXPREOPT),)
++      WITH_DEXPREOPT := true
++    endif
++  endif
++endif
++WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
+ 
+ TARGET_RECOVERY_FSTAB = device/lge/mako/fstab.mako
+ TARGET_USERIMAGES_USE_EXT4 := true
+ BOARD_BOOTIMAGE_PARTITION_SIZE := 23068672 # 22M
+ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 23068672 # 22M
+ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 880803840 # 840M
+-
+ BOARD_USERDATAIMAGE_PARTITION_SIZE := 6189744128 # 5.9G
++BOARD_CACHEIMAGE_PARTITION_SIZE := 738197504 # 704 MByte
++BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+ BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
+ 
+ BOARD_USES_SECURE_SERVICES := true
+@@ -125,4 +140,9 @@ OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+ 
+ HAVE_ADRENO_SOURCE:= false
+ 
+
+diff --git a/media_codecs.xml b/media_codecs.xml
+index 7c855b8..500f538 100644
+--- a/media_codecs.xml
++++ b/media_codecs.xml
+@@ -15,56 +15,85 @@
+ -->
+ 
+ <MediaCodecs>
++    <Include href="media_codecs_google_audio.xml" />
++    <Include href="media_codecs_google_telephony.xml" />
+     <Encoders>
+         <MediaCodec name="OMX.qcom.video.encoder.mpeg4" type="video/mp4v-es" >
+             <Quirk name="requires-allocate-on-input-ports" />
+             <Quirk name="requires-allocate-on-output-ports"/>
+             <Quirk name="requires-loaded-to-idle-after-allocation"/>
++            <Limit name="size" min="96x64" max="1920x1088" />
++            <Limit name="alignment" value="8x8" />
++            <Limit name="block-size" value="16x16" />
++            <Limit name="blocks-per-second" min="1" max="244800" />
++            <Limit name="bitrate" range="1-20000000" />
++            <Feature name="can-swap-width-height" />
+         </MediaCodec>
+         <MediaCodec name="OMX.qcom.video.encoder.h263" type="video/3gpp" >
+             <Quirk name="requires-allocate-on-input-ports" />
+             <Quirk name="requires-allocate-on-output-ports"/>
+             <Quirk name="requires-loaded-to-idle-after-allocation"/>
++            <Limit name="size" min="96x64" max="720x576" />
++            <Limit name="alignment" value="8x8" />
+         </MediaCodec>
+         <MediaCodec name="OMX.qcom.video.encoder.avc" type="video/avc" >
+             <Quirk name="requires-allocate-on-input-ports" />
+             <Quirk name="requires-allocate-on-output-ports"/>
+             <Quirk name="requires-loaded-to-idle-after-allocation"/>
++            <Limit name="size" min="96x64" max="1920x1088" />
++            <Limit name="alignment" value="8x8" />
++            <Limit name="block-size" value="16x16" />
++            <Limit name="blocks-per-second" min="1" max="244800" />
++            <Limit name="bitrate" range="1-20000000" />
++            <Feature name="can-swap-width-height" />
+         </MediaCodec>
+-        <MediaCodec name="OMX.google.amrnb.encoder" type="audio/3gpp" />
+-        <MediaCodec name="OMX.google.aac.encoder" type="audio/mp4a-latm" />
+-        <MediaCodec name="OMX.google.amrwb.encoder" type="audio/amr-wb" />
+-        <MediaCodec name="OMX.google.flac.encoder" type="audio/flac" />
+-        <MediaCodec name="OMX.google.vp8.encoder" type="video/x-vnd.on2.vp8" />
+     </Encoders>
+     <Decoders>
+-        <MediaCodec name="OMX.google.vorbis.decoder" type="audio/vorbis" />
+-        <MediaCodec name="OMX.google.gsm.decoder" type="audio/gsm" />
+-        <MediaCodec name="OMX.google.mp3.decoder" type="audio/mpeg" />
+-        <MediaCodec name="OMX.google.amrnb.decoder" type="audio/3gpp" />
+-        <MediaCodec name="OMX.google.amrwb.decoder" type="audio/amr-wb" />
+-        <MediaCodec name="OMX.google.aac.decoder" type="audio/mp4a-latm" />
+-        <MediaCodec name="OMX.google.g711.alaw.decoder" type="audio/g711-alaw" />
+-        <MediaCodec name="OMX.google.g711.mlaw.decoder" type="audio/g711-mlaw" />
+         <MediaCodec name="OMX.qcom.video.decoder.avc" type="video/avc" >
+             <Quirk name="requires-allocate-on-input-ports" />
+             <Quirk name="requires-allocate-on-output-ports"/>
+             <Quirk name="defers-output-buffer-allocation"/>
++            <Limit name="size" min="64x64" max="1920x1088" />
++            <Limit name="alignment" value="2x2" />
++            <Limit name="block-size" value="16x16" />
++            <Limit name="blocks-per-second" min="1" max="244800" />
++            <Limit name="bitrate" range="1-20000000" />
++            <Feature name="adaptive-playback" />
++            <Feature name="can-swap-width-height" />
++        </MediaCodec>
++        <MediaCodec name="OMX.qcom.video.decoder.avc.secure" type="video/avc" >
++            <Quirk name="requires-allocate-on-input-ports" />
++            <Quirk name="requires-allocate-on-output-ports"/>
++            <Quirk name="defers-output-buffer-allocation"/>
++            <Limit name="size" min="64x64" max="1920x1088" />
++            <Limit name="alignment" value="2x2" />
++            <Limit name="block-size" value="16x16" />
++            <Limit name="blocks-per-second" min="1" max="244800" />
++            <Limit name="bitrate" range="1-20000000" />
++            <Feature name="adaptive-playback" />
++            <Feature name="secure-playback" required="true" />
++            <Feature name="can-swap-width-height" />
+         </MediaCodec>
+         <MediaCodec name="OMX.qcom.video.decoder.mpeg4" type="video/mp4v-es" >
+             <Quirk name="requires-allocate-on-input-ports" />
+             <Quirk name="requires-allocate-on-output-ports"/>
+             <Quirk name="defers-output-buffer-allocation"/>
++            <Limit name="size" min="64x64" max="1920x1088" />
++            <Limit name="alignment" value="2x2" />
++            <Limit name="block-size" value="16x16" />
++            <Limit name="blocks-per-second" min="1" max="244800" />
++            <Limit name="bitrate" range="1-20000000" />
++            <Feature name="adaptive-playback" />
++            <Feature name="can-swap-width-height" />
+         </MediaCodec>
+         <MediaCodec name="OMX.qcom.video.decoder.h263" type="video/3gpp" >
+             <Quirk name="requires-allocate-on-input-ports" />
+             <Quirk name="requires-allocate-on-output-ports"/>
+             <Quirk name="defers-output-buffer-allocation"/>
++            <Limit name="size" min="64x64" max="720x576" />
++            <Limit name="alignment" value="2x2" />
++            <Feature name="adaptive-playback" />
+         </MediaCodec>
+-        <MediaCodec name="OMX.google.vp8.decoder" type="video/x-vnd.on2.vp8" />
+-        <MediaCodec name="OMX.google.vp9.decoder" type="video/x-vnd.on2.vp9" />
+-        <MediaCodec name="OMX.google.h264.decoder" type="video/avc" />
+-        <MediaCodec name="OMX.google.h263.decoder" type="video/3gpp" />
+-        <MediaCodec name="OMX.google.mpeg4.decoder" type="video/mp4v-es" />
+     </Decoders>
++    <Include href="media_codecs_google_video.xml" />
+ </MediaCodecs>
+diff --git a/mixer_paths.xml b/mixer_paths.xml
+index ae3e4aa..6d4857f 100644
+--- a/mixer_paths.xml
++++ b/mixer_paths.xml
+@@ -116,6 +116,7 @@
+     <ctl name="SLIM_0_TX Channels" value="One" />
+     <ctl name="SLIM_3_RX Channels" value="One" />
+     <ctl name="HDMI_RX Channels" value="Two" />
++    <ctl name="Internal BTSCO SampleRate" value="8000" />
+ 
+     <!-- These are audio route (FE to BE) specific mixer settings -->
+     <path name="deep-buffer-playback">
+@@ -135,6 +136,11 @@
+         <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia1" value="1" />
+     </path>
+ 
++    <path name="deep-buffer-playback bt-sco-wb">
++        <ctl name="Internal BTSCO SampleRate" value="16000" />
++        <path name="deep-buffer-playback bt-sco" />
++    </path>
++
+     <path name="low-latency-playback">
+         <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia5" value="1" />
+     </path>
+@@ -146,6 +152,11 @@
+         <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia5" value="1" />
+     </path>
+ 
++    <path name="low-latency-playback bt-sco-wb">
++        <ctl name="Internal BTSCO SampleRate" value="16000" />
++        <path name="low-latency-playback bt-sco" />
++    </path>
++
+     <path name="low-latency-playback speaker-and-hdmi">
+         <ctl name="HDMI Mixer MultiMedia5" value="1" />
+         <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia5" value="1" />
+@@ -163,6 +174,11 @@
+         <ctl name="MultiMedia1 Mixer INTERNAL_BT_SCO_TX" value="1" />
+     </path>
+ 
++    <path name="audio-record bt-sco-wb">
++        <ctl name="Internal BTSCO SampleRate" value="16000" />
++        <path name="audio-record bt-sco" />
++    </path>
++
+     <path name="low-latency-record">
+         <ctl name="MultiMedia5 Mixer SLIM_0_TX" value="1" />
+     </path>
+@@ -171,6 +187,11 @@
+         <ctl name="MultiMedia5 Mixer INTERNAL_BT_SCO_TX" value="1" />
+     </path>
+ 
++    <path name="low-latency-record bt-sco-wb">
++        <ctl name="Internal BTSCO SampleRate" value="16000" />
++        <path name="low-latency-record bt-sco" />
++    </path>
++
+     <path name="voice-call">
+         <ctl name="STUB_RX Mixer Voice Stub" value="1" />
+         <ctl name="Voice Stub Tx Mixer STUB_TX_HL" value="1" />
+@@ -185,7 +206,6 @@
+     </path>
+ 
+     <path name="voice-call bt-sco">
+-        <ctl name="Internal BTSCO SampleRate" value="8000" />
+         <ctl name="Voice Stub Tx Mixer INTERNAL_BT_SCO_TX" value="1" />
+         <ctl name="SLIMBUS_1_RX Mixer Voice Stub" value="1" />
+         <ctl name="Voice Stub Tx Mixer SLIM_1_TX" value="1" />
+@@ -197,6 +217,11 @@
+         <ctl name="SLIMBUS_3_RX Port Mixer INTERNAL_BT_SCO_RX" value="1" />
+     </path>
+ 
++    <path name="voice-call bt-sco-wb">
++        <ctl name="Internal BTSCO SampleRate" value="16000" />
++        <path name="voice-call bt-sco" />
++    </path>
++
+     <!-- These are actual sound device specific mixer settings -->
+     <path name="dmic1">
+         <ctl name="SLIM_0_TX Channels" value="One" />
+@@ -442,4 +467,10 @@
+         <path name="adc1" />
+     </path>
+ 
++    <path name="bt-sco-mic-wb">
++    </path>
++
++    <path name="bt-sco-headset-wb">
++    </path>
++
+ </mixer>
+
+
