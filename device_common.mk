@@ -27,6 +27,7 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default \
     audio_policy.msm8960 \
+    com.android.nfc_extras \
     e2fsck \
     gps.msm8960 \
     libaudio-resampler \
@@ -97,6 +98,7 @@ PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/system/etc/init.sony.bt.sh:system/etc/init.sony.bt.sh \
     $(SONY_ROOT)/system/etc/media_codecs.xml:system/etc/media_codecs.xml \
     $(SONY_ROOT)/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
+    $(SONY_ROOT)/system/etc/nfcee_access.xml:system/etc/nfcee_access.xml \
     $(SONY_ROOT)/system/etc/thermanager-conf.xml:system/etc/thermanager-conf.xml \
     $(SONY_ROOT)/system/usr/idc/clearpad.idc:system/usr/idc/clearpad.idc \
     $(SONY_ROOT)/system/usr/keylayout/apq8064-tabla-snd-card_Button_Jack.kl:system/usr/keylayout/apq8064-tabla-snd-card_Button_Jack.kl \
@@ -143,6 +145,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.google.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
