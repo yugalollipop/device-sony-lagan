@@ -68,7 +68,7 @@ on init
 
     # start recovery-switch script
     start ygrecovery
-    wait /dev/.recovery_aborted 9999999
+    wait /dev/.recovery_aborted 1
 
 
 
@@ -260,7 +260,7 @@ on post-fs-data
     # YGAPPS START
     # our system should now be more-or-less ready, time to start our on-demand gapps installation
     start yginstall
-    wait /dev/.yginstall_done 60
+    wait /dev/.yginstall_done 1
     # YGAPPS END
 
     # start kickstart and co..
