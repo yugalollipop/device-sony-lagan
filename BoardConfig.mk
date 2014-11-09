@@ -64,39 +64,43 @@ BOARD_SEPOLICY_DIRS += \
        device/sony/lagan/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-       bluetooth_loader.te \
-       bridge.te \
-       camera.te \
-       conn_init.te \
-       device.te \
-       domain.te \
-       file.te \
-       file_contexts \
-       hostapd.te \
-       kickstart.te \
-       mediaserver.te \
-       mpdecision.te \
-       netmgrd.te \
-       property.te \
-       property_contexts \
-       qmux.te \
-       rild.te \
-       rmt.te \
-       sensors.te \
-       surfaceflinger.te \
-       system_server.te \
-       tee.te \
-       te_macros \
-       thermald.te \
-       ueventd.te
-
-BOARD_SEPOLICY_UNION += \
-       pabx_config.te \
-       yuga_service.te \
-       recovery.te \
-       qcfqd.te \
-       tad_static.te \
-       taimport.te \
-       ta_qmi_client.te
+	bluetooth_loader.te \
+	bootanim.te \
+	bridge.te \
+	camera.te \
+	conn_init.te \
+	device.te \
+	domain.te \
+	file_contexts \
+	file.te \
+	hci_attach.te \
+	hostapd.te \
+	init.te \
+	kickstart.te \
+	mediaserver.te \
+	mpdecision.te \
+	netd.te \
+	netmgrd.te \
+	pabx_config.te \
+	property_contexts \
+	property.te \
+	qcfqd.te \
+	qmux.te \
+	radio.te \
+	recovery.te \
+	rild.te \
+	rmt.te \
+	sensors.te \
+	surfaceflinger.te \
+	system_app.te \
+	system_server.te \
+	tad_static.te \
+	taimport.te \
+	ta_qmi_client.te \
+	tee.te \
+	te_macros \
+	thermald.te \
+	ueventd.te \
+	yuga_service.te
 
 BOARD_CHARGER_ENABLE_SUSPEND := true

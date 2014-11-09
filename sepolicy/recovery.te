@@ -86,3 +86,5 @@ allow recovery device:file create_file_perms;
   # This line seems suspect, as it should not really need to
   # set scheduling parameters for a kernel domain task.
   allow recovery kernel:process setsched;
+
+  allow recovery shell_exec:file entrypoint;
