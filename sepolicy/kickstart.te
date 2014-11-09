@@ -18,6 +18,7 @@ allow kickstart kickstart_exec:file { open execute_no_trans getattr };
 
 # kickstart may write to /dev
 allow kickstart device:dir rw_dir_perms;
+allow kickstart device:chr_file getattr;
 
 # Let qcks access /dev/mdm node (modem driver)
 allow kickstart radio_device:chr_file r_file_perms;
@@ -54,3 +55,5 @@ auditallow kickstart system_data_file:dir { write add_name remove_name };
 
 # allow write access to /proc/rdtag (and other?)
 allow kickstart proc:file rw_file_perms;
+
+allow kickstart system_data_file:file create;

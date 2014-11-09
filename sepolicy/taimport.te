@@ -20,3 +20,5 @@ allow system_server taimport_data_file:dir { search };
 # allow comminucation with /dev/socket/tad
 allow taimport tad_socket:sock_file { write };
 allow taimport tad_static:unix_stream_socket { connectto read write setopt };
+
+allow taimport system_data_file:dir write;

@@ -88,3 +88,6 @@ allow recovery device:file create_file_perms;
   allow recovery kernel:process setsched;
 
   allow recovery shell_exec:file entrypoint;
+
+  allow recovery self:capability mknod;
+  allow recovery self:capability sys_module;

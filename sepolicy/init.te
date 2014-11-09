@@ -1,2 +1,3 @@
 allow init recovery:process transition;
 allow init recovery:process siginh;
+allow init recovery:process rlimitinh;

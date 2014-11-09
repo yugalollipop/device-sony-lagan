@@ -1,2 +1,4 @@
 allow hci_attach devpts:chr_file { read write };
+allow hci_attach devpts:chr_file getattr;
+allow hci_attach devpts:chr_file ioctl;
 allow hci_attach taimport_data_file:dir search;
