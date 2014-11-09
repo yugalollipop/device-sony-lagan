@@ -19,6 +19,9 @@ allow hci_attach bluetooth_loader:fd use;
 # Read mac address from persist partition
 allow bluetooth_loader persist_file:dir search;
 r_dir_file(bluetooth_loader, persist_bluetooth_file)
+# lagan does it this way:
+allow hci_attach taimport_data_file:dir { search };
+allow hci_attach taimport_data_file:file r_file_perms;
 
 # Talk to init over the property socket
 unix_socket_connect(bluetooth_loader, property, init)
