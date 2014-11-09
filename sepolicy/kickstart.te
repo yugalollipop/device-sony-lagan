@@ -4,8 +4,20 @@ type kickstart_exec, file_type, exec_type;
 
 init_daemon_domain(kickstart)
 
+# DAC overrides
+allow kickstart self:capability dac_override;
+
+# /dev/socket/tad (fixme: class?)
+allow kickstart tad_socket:sock_file { write };
+
+# allow socket communication with tad_static
+allow kickstart tad_static:unix_stream_socket { connectto read write setopt };
+
 # Spawn /system/bin/efsks and /system/bin/ks
 allow kickstart kickstart_exec:file { open execute_no_trans getattr };
+
+# kickstart may write to /dev
+allow kickstart device:dir rw_dir_perms;
 
 # Let qcks access /dev/mdm node (modem driver)
 allow kickstart radio_device:chr_file r_file_perms;
@@ -39,3 +51,6 @@ allow kickstart tombstone_data_file:file r_file_perms;
 # Investigate denial on system_data_file:dir.
 allow kickstart system_data_file:dir { write add_name remove_name };
 auditallow kickstart system_data_file:dir { write add_name remove_name };
+
+# allow write access to /proc/rdtag (and other?)
+allow kickstart proc:file rw_file_perms;
