@@ -93,7 +93,6 @@ BOARD_SEPOLICY_UNION += \
 BOARD_SEPOLICY_UNION += \
        pabx_config.te \
        yuga_service.te \
-       recovery.te \
        qcfqd.te \
        tad_static.te \
        taimport.te \
