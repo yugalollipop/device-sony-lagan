@@ -412,7 +412,7 @@ service qcfqd /system/bin/qc-fqd
     disabled
 
 # reconfigure kernel-settings on-the-fly
-service yuga_reconf /system/bin/sh yuga_reconf.sh
+service yuga_reconf /system/bin/sh /yuga_reconf.sh
     class late_start
     seclabel u:r:yuga_service:s0
     oneshot
@@ -444,7 +444,7 @@ service yginstall /system/bin/sh /yuga_gapps.sh
     seclabel u:r:recovery:s0
     disabled
 
-# launched by on-init, continues if user does not wnt
+# launched by on-init, continues if user does not want
 # to enter recovery
 service ygrecovery /sbin/busybox_static sh /yuga_recovery.sh
     class main

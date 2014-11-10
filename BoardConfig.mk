@@ -84,7 +84,6 @@ BOARD_SEPOLICY_UNION += \
 	qcfqd.te \
 	qmux.te \
 	radio.te \
-	recovery.te \
 	rild.te \
 	rmt.te \
 	sensors.te \

@@ -30,6 +30,12 @@ if [ -s $EVENT_OUT ] || busybox_static grep -q warmboot=0x77665502 /proc/cmdline
 	echo 40 > /sys/class/leds/lm3533-green/brightness
 	
 	cd /
+
+	# User booted into recovery mode using a hw button
+	# we are going to forcefully disable selinux now - may god forgive us.
+
+	busybox_static setenforce 0
+
 	busybox_static mount -o remount,rw /
 	cd recovery
 	busybox_static mkdir tmp proc sys
@@ -38,6 +44,9 @@ if [ -s $EVENT_OUT ] || busybox_static grep -q warmboot=0x77665502 /proc/cmdline
 	busybox_static umount /sys
 	busybox_static cpio -i < /recovery/ramdisk-recovery.cpio
 	busybox_static chroot /recovery /init
+
+	# notreached
+	busybox_static sleep 99999
 fi
 
 busybox_static touch $INIT_GOON
