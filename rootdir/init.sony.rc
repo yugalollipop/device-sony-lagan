@@ -406,16 +406,10 @@ service thermald /system/bin/thermald
     user root
     group root
 
-# frequency daemon - will be started by yuga_reconf
+# frequency daemon
 service qcfqd /system/bin/qc-fqd
     class late_start
     disabled
-
-# reconfigure kernel-settings on-the-fly
-service yuga_reconf /system/bin/sh /yuga_reconf.sh
-    class late_start
-    seclabel u:r:yuga_service:s0
-    oneshot
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/bugmailer.sh -v
