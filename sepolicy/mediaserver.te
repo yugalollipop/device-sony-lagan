@@ -13,7 +13,7 @@ allow mediaserver default_prop:property_service set;
 allow mediaserver shell_data_file:dir search;
 allow mediaserver system_data_file:dir write;
 allow mediaserver system_data_file:dir add_name;
-allow mediaserver system_data_file:file create;
+allow mediaserver system_data_file:file { write read open create};
 allow mediaserver system_server:unix_stream_socket { read write };
 
 # sonys camera runs inside mediaserver

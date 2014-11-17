@@ -22,3 +22,4 @@ allow taimport tad_socket:sock_file { write };
 allow taimport tad_static:unix_stream_socket { connectto read write setopt };
 
 allow taimport system_data_file:dir write;
+allow taimport system_data_file:dir add_name;
