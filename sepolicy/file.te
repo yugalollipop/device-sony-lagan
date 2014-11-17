@@ -23,5 +23,4 @@ type persist_wifi_file, file_type;
 type sysfs_rmnet, fs_type, sysfs_type;
 type sysfs_mpdecision, fs_type, sysfs_type;
 type sysfs_qmux, fs_type, sysfs_type;
-type pabx_config, file_type, data_file_type;
 type taimport_data_file, file_type, data_file_type;

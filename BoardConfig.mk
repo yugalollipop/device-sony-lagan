@@ -78,7 +78,6 @@ BOARD_SEPOLICY_UNION += \
 	mpdecision.te \
 	netd.te \
 	netmgrd.te \
-	pabx_config.te \
 	property_contexts \
 	property.te \
 	qcfqd.te \
@@ -96,7 +95,6 @@ BOARD_SEPOLICY_UNION += \
 	tee.te \
 	te_macros \
 	thermald.te \
-	ueventd.te \
-	yuga_service.te
+	ueventd.te
 
 BOARD_CHARGER_ENABLE_SUSPEND := true

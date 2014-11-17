@@ -1,3 +1,0 @@
-# allow settings to write yuga config
-allow system_app pabx_config:file create_file_perms;
-allow system_app pabx_config:dir rw_dir_perms;
