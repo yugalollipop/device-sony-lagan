@@ -6,8 +6,8 @@
 # IF gapps is not already installed on the device
 #
 
-MD5_GAPPS="db5ec0f60ad9eaab8cacc005a29d1018"
-PTH_GAPPS="/data/media/0/gapps_50_yuga_001-db5e.tgz"
+MD5_GAPPS="b7665200da6fe5a86df6a99a0ec80969"
+PTH_GAPPS="/data/media/0/gapps_50_yuga_002-b766.tgz"
 
 # only install gapps package if md5sum matches this: (cannot use sdcard as we are not multiuser yet)
 echo "$MD5_GAPPS  $PTH_GAPPS" > /dev/.yg_gapps_md5
@@ -21,6 +21,7 @@ if ! grep -q '^tmpfs /data' /proc/mounts ; then
             mount -o remount,rw /system
             echo  25 > /sys/class/leds/lm3533-green/brightness
             /system/xbin/tar -xvf $PTH_GAPPS
+            rm /data/system/packages.*
             echo 255 > /sys/class/leds/lm3533-blue/brightness
             sync
             echo s > /proc/sysrq-trigger
