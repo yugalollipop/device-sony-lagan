@@ -17,17 +17,9 @@ echo 1 > /sys/devices/system/cpu/cpu3/online
 
 cfg_gov=`cat /data/.pabx/pabx_settings_governor`
 case "$cfg_gov" in
-    "interactive")
-    echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-    echo "interactive" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-    echo "interactive" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
-    echo "interactive" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
-    echo 1026000 > /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
-    echo 30000 > /sys/devices/system/cpu/cpufreq/interactive/timer_rate
-        ;;
     "unmanaged")
         ;;
-    "ondemand_old")
+    "ondemand")
     echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
     echo "ondemand" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
     echo "ondemand" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
@@ -58,19 +50,12 @@ case "$cfg_gov" in
     echo 70 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load
         ;;
     *)
-    echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-    echo "ondemand" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-    echo "ondemand" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
-    echo "ondemand" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
-    echo 40000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-    echo 95 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
-    echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
-    echo 2 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
-    echo 5 > /sys/devices/system/cpu/cpufreq/ondemand/down_differential
-    echo 60 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core
-    echo 1026000 > /sys/devices/system/cpu/cpufreq/ondemand/optimal_freq
-    echo 1026000 > /sys/devices/system/cpu/cpufreq/ondemand/sync_freq
-    echo 70 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load
+    echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    echo "interactive" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+    echo "interactive" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
+    echo "interactive" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
+    echo 1026000 > /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
+    echo 30000 > /sys/devices/system/cpu/cpufreq/interactive/timer_rate
         ;;
     esac
 
