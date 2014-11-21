@@ -21,7 +21,6 @@ if ! grep -q '^tmpfs /data' /proc/mounts ; then
             mount -o remount,rw /system
             echo  25 > /sys/class/leds/lm3533-green/brightness
             /system/xbin/tar -xvf $PTH_GAPPS
-            rm /data/system/packages.*
             echo 255 > /sys/class/leds/lm3533-blue/brightness
             sync
             echo s > /proc/sysrq-trigger
