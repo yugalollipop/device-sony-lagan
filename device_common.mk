@@ -65,6 +65,17 @@ PRODUCT_PACKAGES += \
     libqdutils \
     libqdMetaData
 
+# OMX
+PRODUCT_PACKAGES += \
+    libmm-omxcore \
+    libdivxdrmdecrypt \
+    libOmxVdec \
+    libOmxVenc \
+    libOmxCore \
+    libstagefrighthw \
+    libc2dcolorconvert
+
+
 PRODUCT_PACKAGES += \
     charger_res_images \
     charger \
