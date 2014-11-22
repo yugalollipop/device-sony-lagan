@@ -40,6 +40,7 @@ PRODUCT_PACKAGES += \
     lights.sony \
     sensors.msm8960 \
     nfc.msm8960 \
+    power.msm8960 \
     liblights-core \
     qc-fqd \
     libqc-opt \
