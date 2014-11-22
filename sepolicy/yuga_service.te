@@ -18,7 +18,7 @@ allow yuga_service shell_exec:file { entrypoint };
 allow yuga_service system_file:file { execute_no_trans };
 
 # we are root - really root: check posix permissions if selinux fails
-allow yuga_service self:capability { dac_override dac_read_search };
+allow yuga_service self:capability { dac_override dac_read_search chown };
 
 # allow reading and writing to /data/.pabx
 allow yuga_service pabx_config:dir r_dir_perms;
@@ -26,4 +26,4 @@ allow yuga_service pabx_config:file r_file_perms;
 
 # allow us to write to sysfs nodes
 allow yuga_service sysfs_devices_system_cpu:file rw_file_perms;
-allow yuga_service sysfs:file rw_file_perms;
+allow yuga_service sysfs:file { rw_file_perms setattr };
