@@ -56,6 +56,7 @@ case "$cfg_gov" in
     echo "interactive" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
     echo 1026000 > /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
     echo 30000 > /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    chown system /sys/devices/system/cpu/cpufreq/interactive/boostpulse
         ;;
     esac
 
