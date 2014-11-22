@@ -70,7 +70,8 @@ PRODUCT_PACKAGES += \
     charger \
 
 PRODUCT_PACKAGES += \
-    Launcher3
+    Launcher3 \
+    Stk
 
 # Platform specific tags
 #
