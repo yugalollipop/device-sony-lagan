@@ -5,7 +5,7 @@ CLEAN_HEADERS='../../../bionic/libc/kernel/tools/clean_header.py -k ../../../ker
 
 mkdir -p kernel-headers/linux
 
-for x in msm_mdp.h msm_ion.h msm_rotator.h ; do
+for x in msm_mdp.h msm_ion.h msm_rotator.h msm_kgsl.h msm_vidc_dec.h msm_vidc_enc.h ; do
 	$CLEAN_HEADERS/$x > kernel-headers/linux/$x
 done
 
