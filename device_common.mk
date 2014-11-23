@@ -61,16 +61,29 @@ PRODUCT_PACKAGES += \
     gralloc.msm8960 \
     hwcomposer.msm8960 \
     memtrack.msm8960 \
+    copybit.msm8960 \
     libgenlock \
     libqdutils \
     libqdMetaData
+
+# OMX
+PRODUCT_PACKAGES += \
+    libmm-omxcore \
+    libdivxdrmdecrypt \
+    libOmxVdec \
+    libOmxVenc \
+    libOmxCore \
+    libstagefrighthw \
+    libc2dcolorconvert
+
 
 PRODUCT_PACKAGES += \
     charger_res_images \
     charger \
 
 PRODUCT_PACKAGES += \
-    Launcher3
+    Launcher3 \
+    Stk
 
 # Platform specific tags
 #

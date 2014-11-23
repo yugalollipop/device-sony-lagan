@@ -5,8 +5,13 @@ CLEAN_HEADERS='../../../bionic/libc/kernel/tools/clean_header.py -k ../../../ker
 
 mkdir -p kernel-headers/linux
 
+<<<<<<< HEAD
+for x in msm_mdp.h msm_ion.h msm_rotator.h msm_charm.h ; do
+	../../../bionic/libc/kernel/tools/clean_header.py -k ../../../kernel/sony/apq8064 ../../../kernel/sony/apq8064/include/linux/$x > kernel-headers/linux/$x
+=======
 for x in msm_mdp.h msm_ion.h msm_rotator.h msm_kgsl.h msm_vidc_dec.h msm_vidc_enc.h ; do
 	$CLEAN_HEADERS/$x > kernel-headers/linux/$x
+>>>>>>> pabx/lp50
 done
 
 # the UAPI of 5.0 expects a 3.14 (?) kernel - and does not match our definition of ion.h: fix it forcefully
