@@ -5,10 +5,6 @@ type qcfqd_exec, exec_type, file_type;
 # Started by init
 init_daemon_domain(qcfqd)
 
-# allow reading configuration
-allow qcfqd pabx_config:dir r_dir_perms;
-allow qcfqd pabx_config:file r_file_perms;
-
 # allow watching for screen on/off events
 allow qcfqd input_device:dir r_dir_perms;
 allow qcfqd input_device:chr_file r_file_perms;
